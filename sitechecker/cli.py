@@ -1,4 +1,5 @@
 import argparse
+from sitechecker.ler_csv import ler_csv
 
 def read_user_cli_args():
 
@@ -14,6 +15,15 @@ def read_user_cli_args():
         type=str,
         default=[],
         help="Insira um ou mais URLs"
+    )
+    parser.add_argument(
+        "-c",
+        "--csv",
+        metavar="csv",
+        nargs="+",
+        type=str,
+        default=[],
+        help="Insira um arquivo csv com URLs"
     )
     return parser.parse_args()
 
