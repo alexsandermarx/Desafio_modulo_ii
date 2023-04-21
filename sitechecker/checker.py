@@ -28,27 +28,34 @@ def site_is_online(url, timeout=10):
 def _site_check(urls, csv, reg_check):
     
     if reg_check == []:
-        reg_check = 0
+        reg_check = 1
     else:
         reg_check = int(reg_check[0])
+
+    matriz_url = []
 
     for csv_i in range(len(csv)):
         lista_csv = ler_csv(csv[csv_i])
         for item_csv in lista_csv:
-            urls.append(item_csv) 
+            matriz_url.append([item_csv,0,0])
+
+    for url in urls:
+        matriz_url.append([url,0,0])
 
     verificacoes = 0
     try:
         while True:
             os.system('cls' if os.name == 'nt' else 'clear')
-            for url in urls:
+            for url in matriz_url:
                 error = ""
                 try:
-                    result = site_is_online(url)
+                    result = site_is_online(url[0], reg_check)
                 except Exception as e:
                     result = False
                     error = str(e)
-                display_check_result(result, url, error)
+                online = display_check_result(result, url[0], error)
+                url[1] += online
+                url[2] += 1
             
             verificacoes += 1
             print("Quantidade de verificações: {}".format(verificacoes))
@@ -57,5 +64,9 @@ def _site_check(urls, csv, reg_check):
             sleep(reg_check)
     except (KeyboardInterrupt):
         print("\n\nExecução finalizada\n\n")
+        arq_resultado = open("resultado.txt", "w")
+        for url in matriz_url:
+            arq_resultado.write("O site {} ficou online em {}%% das tentativas\n".format(url[0],(url[1]/url[2])*100))
+        arq_resultado.close()
         pass
 

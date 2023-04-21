@@ -1,3 +1,8 @@
+# Arquivos .csv e .txt usados durante os testes
+resultado.txt
+*.csv
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
