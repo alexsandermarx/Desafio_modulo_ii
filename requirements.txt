@@ -1,0 +1,6 @@
+Não foram utilizados pacotes externos (com instalação via pip, por exemplo), apenas bibliotecas via importação, dentre eles:
+
+argparse -> Utilizado na construção de linhas de comando de forma simplificada
+csv -> Utilizado para a leitura de arquivos .csv
+time -> Desta biblioteca, foi utilizado apenas a função sleep para pausar a execução do código de forma sincrona.
+os -> Utilizado para executar comandos para a limpeza do terminal e identificação do sistema operacional
